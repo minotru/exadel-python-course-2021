@@ -9,7 +9,7 @@ def get_input_parts(message):
 def get_base_and_height():
     message = 'Enter base and height separated by a space:'
     parts = get_input_parts(message)
-    while len(parts) != 2 or not all([parts[0].isdigit(), parts[1].isdigit()]):
+    while len(parts) != 2 or not all(part.isdigit() for part in parts):
         show_error_message('Please, enter the correct base and height separated by a space.') 
         parts = get_input_parts(message)
     return { 'base' : int(parts[0]), 'height' : int(parts[1]) }
@@ -21,7 +21,7 @@ def get_area_by_base_and_height():
 def get_two_sides_and_angle_between_them():
     message = 'Enter 2 sides and angle(degrees) between them separated by a space:'
     parts = get_input_parts(message)    
-    while len(parts) != 3 or not all([parts[0].isdigit(), parts[1].isdigit(), parts[2].isdigit()]):
+    while len(parts) != 3 or not all(part.isdigit() for part in parts):
         show_error_message('Please, enter the correct 2 sides and angle(degrees) between them separated by a space.') 
         parts = get_input_parts(message)
     return { 'side_one' : int(parts[0]), 'side_two' : int(parts[1]), 'angle' : int(parts[2]) }
@@ -31,7 +31,7 @@ def get_area_by_two_sides_and_angle_betwenn_them():
     print_area((params['side_one'] * params['side_two'] / 2) * math.sin(math.radians(int(params['angle']))))
 
 def print_area(area):
-    print(f'Area is: {str(round(area))}')
+    print(f'Area is: {float("{0:.2f}".format(area))}')
 
 def get_menu_item():
     message = 'Enter a menu item number: '
