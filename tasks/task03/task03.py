@@ -14,15 +14,15 @@ def create_statistics(strings):
             if word in result.keys():
                 result[word]["count"] += 1
             else:
-                result[word] = {"count": 1, "first_line": index}
-    return result.items()
+                result[word] = {"word": word, "count": 1, "first_line": index}
+    return result.values()
 
 def print_line(info):
-    print('%-12s%-12s%-12s' % (info[0], info[1], info[2]))
+    print('\t'.join(info))
 
 def print_statistics(items):
     print_line(["word", "count", "first line"])
     for item in items:
-        print_line([item[0], item[1]["count"], item[1]["first_line"]])
+        print_line([item["word"], str(item["count"]), str(item["first_line"])])    
 
 print_statistics(create_statistics(texts))
